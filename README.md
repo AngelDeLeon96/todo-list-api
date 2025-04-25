@@ -1,98 +1,146 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# Todo List API
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Una API REST para gestionar tareas construida con NestJS, TypeORM y autenticación JWT.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Descripción
 
-## Description
+Este proyecto es una API de lista de tareas que permite a los usuarios registrarse, iniciar sesión, y gestionar sus tareas personales. La API proporciona endpoints para crear, leer, actualizar y eliminar tareas, así como para la autenticación de usuarios.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Tecnologías
 
-## Project setup
+- [NestJS](https://nestjs.com/) - Framework para construir aplicaciones Node.js eficientes y escalables
+- [TypeORM](https://typeorm.io/) - ORM para TypeScript y JavaScript
+- [JWT](https://jwt.io/) - JSON Web Tokens para autenticación
+- [MySQL](https://www.mysql.com/) - Base de datos relacional
+- [Docker](https://www.docker.com/) - Contenedores para desarrollo y despliegue
+
+## Requisitos previos
+
+- Node.js (v18 o superior)
+- npm o pnpm
+- Docker y docker-compose (opcional, para desarrollo con contenedores)
+- MySQL (si no se usa Docker)
+
+## Instalación
+
+1. Clonar el repositorio:
 
 ```bash
-$ pnpm install
+git clone <url-del-repositorio>
+cd todo-list-api
 ```
 
-## Compile and run the project
+2. Instalar dependencias:
 
 ```bash
-# development
-$ pnpm run start
-
-# watch mode
-$ pnpm run start:dev
-
-# production mode
-$ pnpm run start:prod
+pnpm install
+# o con npm
+npm install
 ```
 
-## Run tests
+3. Configurar variables de entorno:
+
+Crea un archivo `.env` en la raíz del proyecto con el siguiente contenido:
+
+```
+# Database
+DB_HOST=localhost
+DB_PORT=3306
+DB_USERNAME=root
+DB_PASSWORD=password
+DB_DATABASE=todolist
+
+# JWT
+JWT_SECRET=your_jwt_secret
+JWT_EXPIRATION=3600s
+```
+
+## Ejecución con Docker
+
+Para iniciar la aplicación con Docker:
 
 ```bash
-# unit tests
-$ pnpm run test
-
-# e2e tests
-$ pnpm run test:e2e
-
-# test coverage
-$ pnpm run test:cov
+docker-compose up
 ```
 
-## Deployment
+Esto iniciará tanto la API como la base de datos MySQL.
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+## Ejecución local
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+1. Inicia la aplicación en modo desarrollo:
 
 ```bash
-$ pnpm install -g @nestjs/mau
-$ mau deploy
+pnpm start:dev
+# o con npm
+npm run start:dev
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+2. Para producción:
 
-## Resources
+```bash
+pnpm build
+pnpm start:prod
+# o con npm
+npm run build
+npm run start:prod
+```
 
-Check out a few resources that may come in handy when working with NestJS:
+## Usuario por defecto
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+La aplicación cuenta con un usuario administrador predeterminado que se crea automáticamente al iniciar:
 
-## Support
+```json
+{
+  "email": "admin@example.com",
+  "password": "Admin123!"
+}
+```
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+Puedes utilizar estas credenciales para probar la API inmediatamente después de la instalación.
 
-## Stay in touch
+## Endpoints principales
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+### Autenticación
 
-## License
+- `POST /auth/register` - Registrar un nuevo usuario
+- `POST /auth/login` - Iniciar sesión y obtener token JWT
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+### Tareas
+
+- `GET /tasks` - Obtener todas las tareas del usuario
+- `GET /tasks/:id` - Obtener una tarea específica
+- `POST /tasks` - Crear una nueva tarea
+- `PATCH /tasks/:id` - Actualizar una tarea existente
+- `DELETE /tasks/:id` - Eliminar una tarea
+
+## Testing
+
+Para ejecutar los tests:
+
+```bash
+# Tests unitarios
+pnpm test
+
+# Tests e2e
+pnpm test:e2e
+
+# Cobertura de tests
+pnpm test:cov
+```
+
+## Estructura del proyecto
+
+```
+src/
+  ├── auth/               # Autenticación y autorización
+  ├── config/             # Configuraciones de la aplicación
+  ├── database/           # Configuración de la base de datos
+  ├── tasks/              # Módulo de tareas
+  ├── users/              # Módulo de usuarios
+  ├── app.module.ts       # Módulo principal de la aplicación
+  └── main.ts             # Punto de entrada de la aplicación
+```
+
+## Licencia
+
+Este proyecto está bajo la Licencia [UNLICENSED](LICENSE).
